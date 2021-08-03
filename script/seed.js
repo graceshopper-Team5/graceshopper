@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Prop} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -12,16 +12,29 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'cody', email: "cody@email.com", password: '123' }),
+    User.create({ username: 'murphy', email: "murphy@email.com", password: '123' }),
+  ])
+
+  //Creating Props 
+  const props = await Promise.all([
+    Prop.create({name: "Millenium Falcon", movieTitle: "Star Wars", movieYear: "1977", price: 10000000.00, imageUrl:"https://en.wikipedia.org/wiki/Millennium_Falcon#/media/File:A_screenshot_from_Star_Wars_Episode_IV_A_New_Hope_depicting_the_Millennium_Falcon.jpg" , description: "The Best spaceship in a galaxy far far away. Made Kessel Run in less than 12 parsecs" }),
+    // Prop.create({name: , movieTitle: , movieYear: , price: , imageUrl: , description: }),
+    // Prop.create({name: , movieTitle: , movieYear: , price: , imageUrl: , description: }),
+    // Prop.create({name: , movieTitle: , movieYear: , price: , imageUrl: , description: }),
+    // Prop.create({name: , movieTitle: , movieYear: , price: , imageUrl: , description: })
   ])
 
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${props.length} props`)
   console.log(`seeded successfully`)
   return {
     users: {
       cody: users[0],
       murphy: users[1]
+    }, 
+    props:{
+      prop1: props[0]
     }
   }
 }
