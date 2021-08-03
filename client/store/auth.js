@@ -27,7 +27,7 @@ export const me = () => async dispatch => {
     return dispatch(setAuth(res.data))
   }
 }
-
+// THUNK 2
 export const authenticate = (username, password, method) => async dispatch => {
   try {
     const res = await axios.post(`/auth/${method}`, {username, password})
