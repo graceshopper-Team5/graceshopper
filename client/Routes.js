@@ -4,6 +4,8 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
+import Products from './components/Products'
+import SingleProduct from './components/SingleProduct'
 
 /**
  * COMPONENT
@@ -18,6 +20,8 @@ class Routes extends Component {
 
     return (
       <div>
+        <Route path='/'  component={Products}/>
+        <Route path='/products/:id' component={SingleProduct}
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
@@ -26,6 +30,8 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path='/' exact component={ Login } />
+            //brings us to all products page/ renders all products
+            
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>

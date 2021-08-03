@@ -3,6 +3,9 @@ const PORT = process.env.PORT || 8080
 const app = require('./app')
 const seed = require('../script/seed');
 
+//API GOES HERE AND WE REQUIRE THE REST OF OUR ROUTES FROM INDEX.JS IN API FOLDER
+app.use('/api', require('./api'))
+
 const init = async () => {
   try {
     if(process.env.SEED === 'true'){
