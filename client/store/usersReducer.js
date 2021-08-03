@@ -15,9 +15,10 @@ export const setUsers = (users) => {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('/api/products/')
-      const { data } = response
-      dispatch(setUsers)
+      const response = await axios.get('/api/users/')
+      console.log("this is response from thunk", response)
+      const data  = response.data
+      dispatch(setUsers(data))
     } catch (err) {
       console.log (err)
     }

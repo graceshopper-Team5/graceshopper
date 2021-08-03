@@ -1,26 +1,26 @@
 import axios from 'axios'
 
 // ACTION TYPE
-const SET_PRODUCTS = 'SET_PRODUCTS'
+const SET_PRODUCT = 'SET_PRODUCT'
 
 //ACTION CREATOR
-export const setProducts = (products) => {
+export const setProduct = (product) => {
   return {
-    type: SET_PRODUCTS,
-    products
+    type: SET_PRODUCT,
+    product
   }
 }
 
 
 //THUNK -
-export const getProducts = () => {
+export const getProduct = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('/api/products')
+      const response = await axios.get(`/api/product/${id}`)
       console.log("this is response from thunk", response)
       const data = response.data
       
-      dispatch(setProducts(data))
+      dispatch(setProduct(data))
     } catch (err) {
       console.log (err)
     }
@@ -29,10 +29,10 @@ export const getProducts = () => {
 
 // REDUCER
 const initialState = []
-export default function productsReducer (state = initialState, action) {
+export default function productReducer (state = initialState, action) {
   switch(action.type) {
-    case SET_PRODUCTS:
-      return action.products
+    case SET_PRODUCT:
+      return action.product
     default:
       return state
   }

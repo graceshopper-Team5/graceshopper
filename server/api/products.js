@@ -1,14 +1,25 @@
 const router = require('express').Router()
-const { models: { products }} = require('../db')
+const { models: { Prop }} = require('../db')
 module.exports = router
 
 // fetches products
 router.get('/', async (req, res, next) => {
   try {
-    const products = await products.findAll({
-      attributes: ['id', 'productname']
+    const Props = await Prop.findAll({
+      attributes: ['id', 'name', 'movieTitle', 'movieYear', 'price', 'imageUrl', 'description']
     })
-    res.json(products)
+    console.log(Props)
+    res.json(Props)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const product = await Prop.findByPk(req.params.id)
+    res.json(product)
   } catch (err) {
     next(err)
   }
