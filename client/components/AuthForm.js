@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
+import {createUser} from '../store/usersReducer';
 
 /**
  * COMPONENT
@@ -16,6 +17,12 @@ const AuthForm = props => {
             <small>Username</small>
           </label>
           <input name="username" type="text" />
+        </div>
+        <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
         </div>
         <div>
           <label htmlFor="password">
@@ -61,8 +68,9 @@ const mapDispatch = dispatch => {
       evt.preventDefault()
       const formName = evt.target.name
       const username = evt.target.username.value
+      const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate(username, password, formName))
+      dispatch(authenticate(username, email, password, formName))
     }
   }
 }
