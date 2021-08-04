@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import {getProduct} from '../store/singleProdReducer'
 
-import { Card } from 'react-bootstrap';
+// import { Card } from 'react-bootstrap';
 
 export class Product extends React.Component {
   componentDidMount() {
@@ -12,7 +12,7 @@ export class Product extends React.Component {
     const product = this.props.product
     return (
       <div>
-          <Card style={{ width: '18rem' }}>
+          {/* <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={product.imageUrl} />
             <Card.Body>
             <Card.Title>{product.name}</Card.Title>
@@ -24,7 +24,7 @@ export class Product extends React.Component {
             </Card.Text>
 
             </Card.Body>
-          </Card>
+          </Card> */}
       </div>
     )
   }

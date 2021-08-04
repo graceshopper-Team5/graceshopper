@@ -19,3 +19,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {getProducts} from '../store/productsreducer'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Card } from 'react-bootstrap';
+import CardDeck from 'react-bootstrap/CardDeck';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 
 export class Products extends React.Component {
@@ -13,21 +14,23 @@ export class Products extends React.Component {
   render () {
     const products = this.props.products
     return (
-      <div>
+      <div className="grid">
         
         {this.props.products.length > 0 ? (
           products.map(product => 
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={product.imageUrl} />
+      
+            <Card style={{ width: '300px' }}>
+            <Card.Img variant="top" src={product.imageUrl} style={{ width: "40vh" }}/>
             <Card.Body>
             <Card.Title>{product.name}</Card.Title>
             <Card.Text>
               <p>{product.price}</p>
             </Card.Text>
-
+            <Button variant="primary">Add to cart</Button>
             </Card.Body>
           </Card> )
         ): (<h3>Nothing here yet!</h3>)}
+
       </div>
     )
   }
