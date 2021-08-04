@@ -8,13 +8,18 @@ import {addToCart} from '../store/cartReducer'
 
 
 export class Products extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
   componentDidMount() {
     this.props.getProducts()
   }
 
-  handleClick = (id) =>{
-    this.props.addToCart(id)
+  handleClick (product) {
+    this.props.addToCart(product)
   }
+
   render () {
     const products = this.props.products
     return (
@@ -29,7 +34,7 @@ export class Products extends React.Component {
             <Card.Text>
               <p>{product.price}</p>
             </Card.Text>
-            <Button variant="primary" onClick= {() => (this.handleClick(product.id))}>Add to cart</Button>
+            <Button variant="primary" onClick= {() => (this.handleClick(product))}>Add to cart</Button>
             </Card.Body>
           </Card>
           )
@@ -50,7 +55,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return{
     getProducts: () => dispatch(getProducts()), 
-    addToCart: (id) => dispatch(addToCart(id))
+    addToCart: (product) => dispatch(addToCart(product))
   }
 }
 

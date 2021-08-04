@@ -31,7 +31,6 @@ export class Product extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("this is from mapstate", state.productReducer)
   return {
     product: state.singleProdReducer
   }
