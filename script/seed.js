@@ -33,7 +33,7 @@ async function seed() {
       movieYear: "1977",
       price: 10000000.0,
       imageUrl:
-        "https://en.wikipedia.org/wiki/Millennium_Falcon#/media/File:A_screenshot_from_Star_Wars_Episode_IV_A_New_Hope_depicting_the_Millennium_Falcon.jpg",
+        "https://upload.wikimedia.org/wikipedia/en/8/8d/A_screenshot_from_Star_Wars_Episode_IV_A_New_Hope_depicting_the_Millennium_Falcon.jpg",
       description:
         "The Best spaceship in a galaxy far far away. Made Kessel Run in less than 12 parsecs",
     }),
@@ -43,7 +43,7 @@ async function seed() {
       movieYear: "2007",
       price: 10100,
       imageUrl:
-        "https://static.wikia.nocookie.net/harrypotter/images/5/59/Elder_Wand.png/revision/latest/scale-to-width-down/700?cb=20161128051519",
+        "https://upload.wikimedia.org/wikipedia/commons/a/a3/The_Elder_Wand.jpg",
       description:
         "The wand is made of elder wood,is 15 inches and contains a Thestral tail-hair core. Appearing at face value to be a wand like any other, it had a smooth, unadorned shaft and a handle formed from two conjoined spheres. one of three magical objects that made up the fabled Deathly Hallows.",
     }),
@@ -53,7 +53,7 @@ async function seed() {
       movieYear: 2018,
       price: 84689.99,
       imageUrl:
-        "https://marvelcinematicuniverse.fandom.com/wiki/Infinity_Gauntlet?file=InfinityGauntletProfilePicture.jpg",
+        "https://upload.wikimedia.org/wikipedia/en/a/af/Infinity_Gauntlet_1.jpg",
       description:
         "Mythical artifact of the Marvel Universe, created by Thanos to harness the power of all five Infinity Stones at once.  Famous for eliminating half of all life in the universe, controversially reversed by the Avengers in Endgame.",
     }),
@@ -63,7 +63,7 @@ async function seed() {
       movieYear: 2011,
       price: 0,
       imageUrl:
-        "https://marvelcinematicuniverse.fandom.com/wiki/Mj%C3%B8lnir?file=Mjolnir.png",
+        "https://upload.wikimedia.org/wikipedia/commons/b/b7/Mjollnir.png",
       description:
         "Hammer wielded famously by Thor (also sometimes Captain America).  May only be wielded by 'one who is worthy'.  Item is free, but cannot be delivered and may only be taken by the customer who can lift it.",
     }),

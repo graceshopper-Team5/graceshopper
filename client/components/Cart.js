@@ -1,20 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getProduct } from "../store/singleProdReducer";
+import { getCartProducts, deleteProduct } from "../store/cartReducer";
+import { Card, Button } from "react-bootstrap";
 
 export class Cart extends React.Component {
-  // render() {
-  // return(
-  //   <div>
-  //   {console.log("you're in the cart")}
-  //   <h1>YOU ARE IN THE CART</h1>
-  //   </div>
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  // )
-  // }
+  componentDidMount() {
+    this.props.getCartProducts();
+  }
+
+  handleClick(product) {
+    this.props.deleteProduct(product);
+  }
+
   render() {
-    console.log("this.props", this.props);
-    console.log("this.state", this.state);
+    //add the checkout feacture
+
     let addedItems = this.props.products.length ? (
       this.props.products.map((product) => {
         return (
@@ -34,9 +39,12 @@ export class Cart extends React.Component {
                                   <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
                                   <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
                               </div> */}
-              <button className="waves-effect waves-light btn pink remove">
+              <Button
+                variant="primary"
+                onClick={() => this.handleClick(product)}
+              >
                 Remove
-              </button>
+              </Button>
             </div>
           </li>
         );
@@ -50,6 +58,7 @@ export class Cart extends React.Component {
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
+        <Button variant="primary">GIMME, GIMME, GIMME</Button>
       </div>
     );
   }
@@ -60,4 +69,11 @@ const mapStateToProps = (state) => {
     products: state.addedProducts,
   };
 };
-export default connect(mapStateToProps)(Cart);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCartProducts: () => dispatch(getCartProducts()),
+    deleteProduct: (product) => dispatch(deleteProduct(product)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
