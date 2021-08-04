@@ -19,6 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Prop.findByPk(req.params.id)
+    console.log(product)
     res.json(product)
   } catch (err) {
     next(err)

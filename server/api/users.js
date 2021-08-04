@@ -17,3 +17,26 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const users = await User.findByPk(req.params.id)
+    console.log(users)
+    res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    // Authorization & Security (Prevent Injection Attacks)
+    // We only want to take information that is given through username and password
+    // for example, someone can use postman to change the admin field and make themselves admin
+    const {username, password} = req.body
+    res.status(201).send(await User.create({username, password}))
+
+  } catch (err) {
+    next(err)
+  }
+})

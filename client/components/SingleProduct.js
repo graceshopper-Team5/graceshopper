@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {getProduct} from '../store/singleProdReducer';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 export class Product extends React.Component {
   componentDidMount() {
      // retrieve the productId from route
-     const productId = this.props.match.params.productId
+     const productId = this.props.match.params.id
      // pass the Id to dispatch the thunk
     this.props.getProduct(productId)
   }
@@ -18,13 +18,14 @@ export class Product extends React.Component {
             <Card.Img variant="top" src={product.imageUrl} />
             <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>
-              {product.price}
-              {product.movieTitle}
-              {product.movieYear}
-              {product.description}
-            </Card.Text>
-
+            <Card.Text>{product.price}</Card.Text>
+            <Card.Text>{product.movieTitle}</Card.Text>
+            <Card.Text>{product.movieYear}</Card.Text>
+            <Card.Text>{product.description}</Card.Text>
+            <Button variant="primary">
+              {/* we need a link that leads to cart */}
+              Add to cart
+              </Button>
             </Card.Body>
           </Card>
       </div>
@@ -41,7 +42,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getproduct: (id) => dispatch(getProduct(id))
+    getProduct: (id) => dispatch(getProduct(id))
   }
 }
 

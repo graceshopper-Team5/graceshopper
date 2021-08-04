@@ -31,7 +31,10 @@ export class Products extends React.Component {
             <Card.Text>
               {product.price}
             </Card.Text>
-            <Button variant="primary">Add to cart</Button>
+            <Button variant="primary">
+              {/* we need a link that leads to cart */}
+              Add to cart
+              </Button>
             </Card.Body>
           </Card> )
         ): (<h3>Nothing here yet!</h3>)}

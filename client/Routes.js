@@ -24,6 +24,7 @@ class Routes extends Component {
         // when user is logged in
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/home" component={Products} />
             <Redirect to="/home" />
           </Switch>
         ) : (
