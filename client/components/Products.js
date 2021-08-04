@@ -4,12 +4,16 @@ import {getProducts} from '../store/productsreducer'
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import {addToCart} from '../store/cartReducer'
 
 
 export class Products extends React.Component {
   componentDidMount() {
     this.props.getProducts()
-    console.log("these are our products", this.props.products)
+  }
+
+  handleClick = (id) =>{
+    this.props.addToCart(id)
   }
   render () {
     const products = this.props.products
@@ -18,7 +22,6 @@ export class Products extends React.Component {
         
         {this.props.products.length > 0 ? (
           products.map(product => 
-      
             <Card style={{ width: '300px' }}>
             <Card.Img variant="top" src={product.imageUrl} style={{ width: "40vh" }}/>
             <Card.Body>
@@ -26,9 +29,11 @@ export class Products extends React.Component {
             <Card.Text>
               <p>{product.price}</p>
             </Card.Text>
-            <Button variant="primary">Add to cart</Button>
+            <Button variant="primary" onClick= {() => (this.handleClick(product.id))}>Add to cart</Button>
             </Card.Body>
-          </Card> )
+          </Card>
+          )
+  
         ): (<h3>Nothing here yet!</h3>)}
 
       </div>
@@ -37,7 +42,6 @@ export class Products extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("this is from mapstate", state.productsReducer)
   return {
     products: state.productsReducer
   }
@@ -45,7 +49,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return{
-    getProducts: () => dispatch(getProducts())
+    getProducts: () => dispatch(getProducts()), 
+    addToCart: (id) => dispatch(addToCart(id))
   }
 }
 

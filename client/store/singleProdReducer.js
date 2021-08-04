@@ -3,6 +3,7 @@ import axios from 'axios'
 // ACTION TYPE
 const SET_PRODUCT = 'SET_PRODUCT'
 
+
 //ACTION CREATOR
 export const setProduct = (product) => {
   return {
@@ -12,14 +13,13 @@ export const setProduct = (product) => {
 }
 
 
+
 //THUNK -
 export const getProduct = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/api/product/${id}`)
-      console.log("this is response from thunk", response)
       const data = response.data
-      
       dispatch(setProduct(data))
     } catch (err) {
       console.log (err)
