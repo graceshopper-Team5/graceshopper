@@ -20,8 +20,7 @@ class Routes extends Component {
 
     return (
       <div>
-        <Route path='/'  component={Products}/>
-        <Route path='/products/:id' component={SingleProduct}
+        <Products/>
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
@@ -30,8 +29,6 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path='/' exact component={ Login } />
-            //brings us to all products page/ renders all products
-            
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
