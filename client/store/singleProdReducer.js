@@ -13,14 +13,16 @@ export const setProduct = (product) => {
 }
 
 
+
 //THUNK -
 export const getProduct = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/api/products/${id}`)
-      console.log("this is response from thunk", response)
+
+      const response = await axios.get(`/api/product/${id}`)
+
+  
       const data = response.data
-      
       dispatch(setProduct(data))
     } catch (err) {
       console.log (err)
