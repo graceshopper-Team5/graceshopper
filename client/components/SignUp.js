@@ -6,7 +6,7 @@ import {createUser} from '../store/usersReducer';
 /**
  * COMPONENT
  */
-const AuthForm = props => {
+const SignUp = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
@@ -46,13 +46,6 @@ const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-  }
-}
 
 const mapSignup = state => {
   return {
@@ -70,10 +63,9 @@ const mapDispatch = dispatch => {
       const username = evt.target.username.value
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(authenticate(username, email, password, formName))
+      dispatch(authenticate(username, email, password))
     }
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export default connect(mapSignup, mapDispatch)(SignUp)

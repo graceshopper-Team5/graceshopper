@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
+import Login from './components/Login';
+import Signup from './components/SignUp';
 import Home from './components/Home';
 import {me} from './store'
 import Products from './components/Products'
@@ -24,11 +25,11 @@ class Routes extends Component {
         {isLoggedIn ? (
         // when user is logged in
           <Switch>
-              <Route path="/cart" component={Cart} />
+            <Route path="/cart" component={Cart} />
             <Route path="/home" component={Home} />
             <Route path="/home" component={Products} />
             <Redirect to="/home" />
-          
+
           </Switch>
         ) : (
           // when user is not logged in
@@ -40,7 +41,6 @@ class Routes extends Component {
             <Route exact path="/products/:id" component={SingleProduct}/>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-          
           </Switch>
         )}
       </div>

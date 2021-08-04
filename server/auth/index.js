@@ -2,15 +2,16 @@ const router = require('express').Router()
 const { models: {User }} = require('../db')
 module.exports = router
 
+//LOGIN ROUTE
 router.post('/login', async (req, res, next) => {
   try {
-    res.send({ token: await User.authenticate(req.body)}); 
+    res.send({ token: await User.authenticate(req.body)});
   } catch (err) {
     next(err)
   }
 })
 
-
+//SIGN UP route
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
