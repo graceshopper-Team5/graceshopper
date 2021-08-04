@@ -18,6 +18,8 @@ export class Cart extends React.Component {
   }
 
   render() {
+    //add the checkout feacture
+
     let addedItems = this.props.products.length ? (
       this.props.products.map((product) => {
         return (
@@ -56,6 +58,7 @@ export class Cart extends React.Component {
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
+        <Button variant="primary">GIMME, GIMME, GIMME</Button>
       </div>
     );
   }
