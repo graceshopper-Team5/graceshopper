@@ -20,15 +20,19 @@ class Routes extends Component {
 
     return (
       <div>
-        <Products/>
         {isLoggedIn ? (
+        // when user is logged in
           <Switch>
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
           </Switch>
         ) : (
+          // when user is not logged in
           <Switch>
-            <Route path='/' exact component={ Login } />
+            <Route exact path="/" component={Products} />
+            <Route exact path="/products" component={Products} />
+            {/* render single product view */}
+            <Route exact path="/products/:id" component={SingleProduct}/>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
