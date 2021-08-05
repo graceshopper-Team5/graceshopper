@@ -14,6 +14,8 @@ router.post('/login', async (req, res, next) => {
 //SIGN UP route
 router.post('/signup', async (req, res, next) => {
   try {
+    // o: can you identify the security concern here
+    //  make sure to whitelist user keys you want to save before creating
     const user = await User.create(req.body)
     res.send({token: await user.generateToken()})
   } catch (err) {

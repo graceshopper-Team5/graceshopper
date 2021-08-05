@@ -7,6 +7,7 @@ module.exports = router;
 // fetches products
 router.get("/", async (req, res, next) => {
   try {
+    // o: any reason why you are filtering your attributes here?
     const Props = await Prop.findAll({
       attributes: [
         "id",
@@ -24,10 +25,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// o: make sure to check for when you don't find a product
 router.get("/:id", async (req, res, next) => {
   try {
     const product = await Prop.findByPk(req.params.id);
-    res.json(product);
+      
+    if(product) {
+      res.json(product);
+    } else {
+      next({ message: "some problem occured", status: 404})
+    }
   } catch (err) {
     next(err);
   }

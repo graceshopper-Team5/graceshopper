@@ -15,9 +15,11 @@ const Prop = db.define('prop', {
     type: Sequelize.INTEGER
   }, 
   price:{
+    // o: let's 🌮 bout this one
     type: Sequelize.DECIMAL(10,2), 
     allowNull: false
   }, 
+  // o: you don't need Sequelize.TEXT
   imageUrl:{
     type: Sequelize.TEXT,
     default: "https://en.wikipedia.org/wiki/Clapperboard#/media/File:ClapperboardColor.svg"

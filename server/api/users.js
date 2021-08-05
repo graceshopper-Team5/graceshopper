@@ -3,6 +3,9 @@ const { models: { User }} = require('../db')
 module.exports = router
 
 // fetches USERS
+
+// o: can you identify the security concern here
+//  write gatekeeping middleware for isAdmin, isLoggedIn
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({

@@ -38,6 +38,7 @@ export default function cartReducer(state = initState, action) {
   }
 }
 
+// o: before done make sure to remove unused code
 // //INSIDE HOME COMPONENT
 // if (action.type === ADD_TO_CART) {
 
