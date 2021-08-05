@@ -7,6 +7,7 @@ import usersReducer from "./usersReducer";
 import productsReducer from "./productsreducer";
 import singleProdReducer from "./singleProdReducer";
 import cartReducer from "./cartReducer";
+import {loadState, saveState} from '../localStorage'
 
 const reducer = combineReducers({
   auth,
@@ -18,7 +19,16 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
-const store = createStore(reducer, middleware);
+
+const persistedState = loadState();
+
+const store = createStore(reducer, persistedState, middleware);
+
+store.subscribe(() => {
+  saveState({
+    addedProducts: store.getState().addedProducts
+  });
+});
 
 export default store;
 export * from "./auth";

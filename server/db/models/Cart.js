@@ -4,7 +4,8 @@ const axios = require('axios');
 
 const Cart = db.define('cart', {
   quantity:{
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue: 1
   } 
 })
 module.exports = Cart; 

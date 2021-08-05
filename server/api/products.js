@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Prop },
+  models: { Prop, Cart , Order},
 } = require("../db");
 const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
 module.exports = router;
@@ -43,6 +43,7 @@ router.put('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const prop = await Prop.findByPk(req.params.id);
     const updatedProp = await prop.update(req.body);
+    
     res.send(updatedProp);
   } catch (error) {
     next(error);
@@ -59,3 +60,19 @@ router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
     next(err)
   }
 })
+
+//THIS IS THE USER UPDATING THE CART
+router.put('/users/:id', async (req, res, next) => {
+  try {
+    // const prop = await Prop.findByPk(req.params.id,
+    //   {include: Order});
+    const cart = await Cart.findOne(
+      {where:
+        {propId: req.params.id}})
+
+    console.log(cart.quantity)
+    res.send(cart);
+  } catch (error) {
+    next(error);
+  }
+});
