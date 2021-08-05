@@ -19,6 +19,7 @@ export class Product extends React.Component {
     this.props.addToCart(product);
   }
   render() {
+    // o: you can destructure this
     const product = this.props.product;
     return (
       <div>
