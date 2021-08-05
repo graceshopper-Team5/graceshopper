@@ -5,7 +5,7 @@ const app = express()
 module.exports = app
 
 // if I am NOT in my production.env I want access to the secrets.js file inside of my local machine
-if (process.env.NODE_ENV !== 'production') require('../server/secrets')
+// if (process.env.NODE_ENV !== 'production') require('../server/secrets')
 // logging middleware
 app.use(morgan('dev'))
 
