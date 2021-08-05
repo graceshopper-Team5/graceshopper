@@ -12,11 +12,16 @@ router.post('/login', async (req, res, next) => {
 })
 
 //SIGN UP route
+// awaiting the creation of a new user instance
+// sending back the new user input 
+// sending back the user's token to the db
 router.post('/signup', async (req, res, next) => {
   try {
-    // o: can you identify the security concern here
-    //  make sure to whitelist user keys you want to save before creating
-    const user = await User.create(req.body)
+  // our api end-point will NOT allow for clients to make themselves admins
+  // we have have to watch our for injection attacks!
+
+    const {username, password } = req.body
+    const user = await User.create({username, password});
     res.send({token: await user.generateToken()})
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
