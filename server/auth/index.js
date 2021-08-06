@@ -20,8 +20,8 @@ router.post('/signup', async (req, res, next) => {
   // our api end-point will NOT allow for clients to make themselves admins
   // we have have to watch our for injection attacks!
 
-    const {username, password } = req.body
-    const user = await User.create({username, password});
+    const {username, email, password } = req.body
+    const user = await User.create({username, email, password});
     res.send({token: await user.generateToken()})
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

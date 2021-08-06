@@ -31,7 +31,7 @@ async function seed() {
       name: "Millenium Falcon",
       movieTitle: "Star Wars",
       movieYear: "1977",
-      price: 10000000.0,
+      price: 100000000,
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/en/8/8d/A_screenshot_from_Star_Wars_Episode_IV_A_New_Hope_depicting_the_Millennium_Falcon.jpg",
       description:
@@ -51,7 +51,7 @@ async function seed() {
       name: "Infinity Gauntlet",
       movieTitle: "Avengers: Infinity War",
       movieYear: 2018,
-      price: 84689.99,
+      price: 8468999,
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/en/a/af/Infinity_Gauntlet_1.jpg",
       description:
@@ -81,7 +81,7 @@ async function seed() {
       name: "Batmobile",
       movieTitle: "Batman",
       movieYear: 1943,
-      price: 254999.99,
+      price: 25499999,
       imageUrl:
         "https://oldnewsclub.com/wp-content/uploads/2020/05/The-Complete-History-of-The-Batmobile-1.jpg",
       description:
@@ -91,7 +91,7 @@ async function seed() {
       name: "Box of Chocolates",
       movieTitle: "Forrest Gump",
       movieYear: 1994,
-      price: 39.95,
+      price: 3995,
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/White-Box-of-Chocolates.jpg/1200px-White-Box-of-Chocolates.jpg",
       description:
