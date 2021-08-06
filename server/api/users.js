@@ -4,7 +4,7 @@ const {requireToken, isAdmin } = require('./gatekeepingMiddleware')
 module.exports = router
 
 // fetches USERS
-router.get('/', requireToken, isAdmin, async (req, res, next) => {
+router.get('/', /*requireToken,*/ isAdmin, async (req, res, next) => {
   try {
     // if we managed to make it PAST require token, we can guarantee that we have a user! & we have access to req.user
     const users = await User.findAll({
@@ -20,7 +20,7 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
   }
 })
 
-router.get('/:id', requireToken, isAdmin, async (req, res, next) => {
+router.get('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
   try {
     const users = await User.findByPk(req.params.id)
     console.log(users)
@@ -30,7 +30,7 @@ router.get('/:id', requireToken, isAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
+router.delete('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     await user.destroy();

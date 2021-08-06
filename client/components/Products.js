@@ -1,13 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getProducts } from "../store/productsreducer";
-import CardDeck from "react-bootstrap/CardDeck";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import React from 'react'
+import { connect } from 'react-redux';
+import {getProducts} from '../store/productsreducer'
+import CardDeck from 'react-bootstrap/CardDeck';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import {addToCart} from '../store/cartReducer'
+import { Link } from 'react-router-dom';
 
-import { addToCart } from "../store/cartReducer";
-
-import { Link } from "react-router-dom";
 
 export class Products extends React.Component {
   constructor(props) {
@@ -75,11 +74,12 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => {
-  return {
+  return{
     getProducts: () => dispatch(getProducts()),
-    addToCart: (product) => dispatch(addToCart(product)),
-    
-  };
-};
+    addToCart: (product) => dispatch(addToCart(product))
+  }
+}
+
+
 
 export default connect(mapState, mapDispatch)(Products);

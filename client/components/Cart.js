@@ -40,7 +40,6 @@ export class Cart extends React.Component {
               <p>
                 <b>Price: {product.price}$</b>
               </p>
-
               <Button onClick ={() => this.changeClick(product.id, {increase:"increase"})} >increase</Button>
               <Button
                 variant="primary"
