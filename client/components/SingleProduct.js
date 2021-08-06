@@ -27,13 +27,23 @@ export class Product extends React.Component {
           <Card.Img variant="top" src={product.imageUrl} />
           <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>${product.price/100}</Card.Text>
+            <Card.Text>${product.price / 100}</Card.Text>
             <Card.Text>{product.movieTitle}</Card.Text>
             <Card.Text>{product.movieYear}</Card.Text>
             <Card.Text>{product.description}</Card.Text>
-            <Button variant="primary" onClick={() => this.handleClick(product)}>
-              Add to cart
-            </Button>
+            {this.props.isLoggedIn ? (
+              <Button onClick={() => this.loginHandleClick (user.id, product)}>
+                need to create this still (calling thunk and working with
+                database)
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                onClick={() => this.handleClick(product)}
+              >
+                Add to cart
+              </Button>
+            )}
           </Card.Body>
         </Card>
       </div>
@@ -44,6 +54,7 @@ export class Product extends React.Component {
 const mapState = (state) => {
   return {
     product: state.singleProdReducer,
+    isLoggedIn: !!state.auth.id,
   };
 };
 

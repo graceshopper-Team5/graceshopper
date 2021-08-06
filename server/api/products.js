@@ -66,13 +66,38 @@ router.put('/users/:id', async (req, res, next) => {
   try {
     // const prop = await Prop.findByPk(req.params.id,
     //   {include: Order});
+    console.log("req.body.increase")
+    console.log(req.body.increase)
+    console.log("req.params.id", req.params.id)
     const cart = await Cart.findOne(
       {where:
         {propId: req.params.id}})
-    cart.quantity++
-    console.log(cart.quantity)
+    
+    console.log("cart", cart)
+    if(req.body.increase === "increase"){
+      cart.quantity++
+    }else{
+      cart.quantity --
+    }
+    console.log("cart.quantity" , cart.quantity)
     res.send(cart);
   } catch (error) {
     next(error);
   }
 });
+
+//adding a product to the cart table 
+//NEED NEW ROUTE!!!! api/order/:id vv <-- need to create this!!! 
+router.post("/cart/:id", async (req, res, next)=>{
+  try{
+    const addedProduct = req.body //addedProduct 
+    const id = req.params.id //userId
+
+    const theUser = await User.findbyPk(id, {include: Order})
+    console.log(theUser)
+    //User.addChild(updatedProduct)
+
+  }catch(err){
+    next(err)
+  }
+})

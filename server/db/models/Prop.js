@@ -15,11 +15,9 @@ const Prop = db.define('prop', {
     type: Sequelize.INTEGER
   }, 
   price:{
-    // o: let's 🌮 bout this one
     type: Sequelize.INTEGER, 
     allowNull: false
   }, 
-  // o: you don't need Sequelize.TEXT
   imageUrl:{
     type: Sequelize.TEXT,
     default: "https://en.wikipedia.org/wiki/Clapperboard#/media/File:ClapperboardColor.svg"
@@ -27,6 +25,5 @@ const Prop = db.define('prop', {
   description: {
     type: Sequelize.TEXT,
   }
-
 })
 module.exports = Prop; 
