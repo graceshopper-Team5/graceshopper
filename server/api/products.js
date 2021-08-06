@@ -69,7 +69,7 @@ router.put('/users/:id', async (req, res, next) => {
     const cart = await Cart.findOne(
       {where:
         {propId: req.params.id}})
-
+    cart.quantity++
     console.log(cart.quantity)
     res.send(cart);
   } catch (error) {
