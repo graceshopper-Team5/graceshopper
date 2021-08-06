@@ -16,7 +16,7 @@ const Prop = db.define('prop', {
   }, 
   price:{
     // o: let's 🌮 bout this one
-    type: Sequelize.DECIMAL(10,2), 
+    type: Sequelize.INTEGER, 
     allowNull: false
   }, 
   // o: you don't need Sequelize.TEXT
