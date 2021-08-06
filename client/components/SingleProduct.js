@@ -27,7 +27,7 @@ export class Product extends React.Component {
           <Card.Img variant="top" src={product.imageUrl} />
           <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>{product.price}</Card.Text>
+            <Card.Text>${product.price/100}</Card.Text>
             <Card.Text>{product.movieTitle}</Card.Text>
             <Card.Text>{product.movieYear}</Card.Text>
             <Card.Text>{product.description}</Card.Text>

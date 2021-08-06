@@ -42,7 +42,7 @@ export class Products extends React.Component {
               <Card.Title>{product.name}</Card.Title>
               </Link>
             <Card.Text>
-              {product.price}
+              ${product.price/100}
             </Card.Text>
 
             <Button variant="primary" onClick= {() => (this.handleClick(product))}>Add to cart</Button>

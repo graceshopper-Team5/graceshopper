@@ -19,7 +19,6 @@ export class Cart extends React.Component {
 
   render() {
     //add the checkout feacture
-
     let addedItems = this.props.products.length ? (
       this.props.products.map((product) => {
         return (
