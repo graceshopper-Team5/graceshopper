@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Login from './components/Login';
 import Signup from './components/SignUp';
-import Home from './components/Home';
 import {me} from './store'
 import Products from './components/Products'
 import SingleProduct from './components/SingleProduct'
@@ -22,11 +21,17 @@ class Routes extends Component {
 
     return (
       <div>
+        <main>
+        <h1>
+          Welcome to Prop House! NYC's largest collection of film memoribillia.
+        </h1>
+        </main>
         {isLoggedIn ? (
           // when user is logged in
           <Switch>
             <Route path="/cart" component={Cart} />
-            <Route path="/home" component={Home} />
+              {/* should render all products */}
+              {/* <Route exact path="/home" component={Home} /> */}
             <Route path="/home" component={Products} />
             <Redirect to="/home" />
 
@@ -70,3 +75,4 @@ const mapDispatch = (dispatch) => {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes));
+

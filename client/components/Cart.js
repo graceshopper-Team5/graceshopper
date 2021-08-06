@@ -35,9 +35,9 @@ export class Cart extends React.Component {
               </p>
 
               {/* <div className="add-remove">
-                                  <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
-                                  <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
-                              </div> */}
+                <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
+                <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
+            </div> */}
               <Button
                 variant="primary"
                 onClick={() => this.handleClick(product)}
