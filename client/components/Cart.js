@@ -1,12 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getCartProducts, deleteProduct } from "../store/cartReducer";
+import { getCartProducts, deleteProduct , changeQuantity} from "../store/cartReducer";
 import { Card, Button } from "react-bootstrap";
 
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
+    this.State ={
+      quanity: 1
+    }
     this.handleClick = this.handleClick.bind(this);
+    this.changeClick = this.changeClick.bind(this)
   }
 
   componentDidMount() {
@@ -15,6 +19,9 @@ export class Cart extends React.Component {
 
   handleClick(product) {
     this.props.deleteProduct(product);
+  }
+  changeClick(product, increase){
+    this.props.changeQuantity(product,increase)
   }
 
   render() {
@@ -33,11 +40,7 @@ export class Cart extends React.Component {
               <p>
                 <b>Price: {product.price}$</b>
               </p>
-
-              {/* <div className="add-remove">
-                <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
-                <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
-            </div> */}
+              <Button onClick ={() => this.changeClick(product.id, {increase:"increase"})} >increase</Button>
               <Button
                 variant="primary"
                 onClick={() => this.handleClick(product)}
@@ -73,6 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
+    changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
