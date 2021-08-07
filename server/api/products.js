@@ -88,16 +88,16 @@ router.put('/users/:id', async (req, res, next) => {
 
 //adding a product to the cart table 
 //NEED NEW ROUTE!!!! api/order/:id vv <-- need to create this!!! 
-router.post("/cart/:id", async (req, res, next)=>{
-  try{
-    const addedProduct = req.body //addedProduct 
-    const id = req.params.id //userId
+// router.post("/cart/:id", async (req, res, next)=>{
+//   try{
+//     const addedProduct = req.body //addedProduct 
+//     const id = req.params.id //userId
 
-    const theUser = await User.findbyPk(id, {include: Order})
-    console.log(theUser)
-    //User.addChild(updatedProduct)
+//     const theUser = await User.findbyPk(id, {include: Order})
+//     console.log(theUser)
+//     //User.addChild(updatedProduct)
 
-  }catch(err){
-    next(err)
-  }
-})
+//   }catch(err){
+//     next(err)
+//   }
+// })

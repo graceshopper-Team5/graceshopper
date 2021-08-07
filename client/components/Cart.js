@@ -10,7 +10,7 @@ export class Cart extends React.Component {
       quanity: 1
     }
     this.handleClick = this.handleClick.bind(this);
-    this.changeClick = this.changeClick.bind(this)
+    // this.changeClick = this.changeClick.bind(this)
   }
 
   componentDidMount() {
@@ -20,9 +20,9 @@ export class Cart extends React.Component {
   handleClick(product) {
     this.props.deleteProduct(product);
   }
-  changeClick(product, increase){
-    this.props.changeQuantity(product,increase)
-  }
+  // changeClick(product, increase){
+  //   this.props.changeQuantity(product,increase)
+  // }
 
   render() {
     //add the checkout feacture
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
-    changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
+    // changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

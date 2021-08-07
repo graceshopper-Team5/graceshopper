@@ -11,8 +11,11 @@ const Order = require('./models/Order')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Prop.belongsToMany(Order, {through: 'cart'})
-Order.belongsToMany(Prop, {through: 'cart'})
+// Prop.belongsToMany(Order, {through: 'cart'})
+// Order.belongsToMany(Prop, {through: 'cart'})
+
+Prop.belongsToMany(User, {through: 'cart'});
+User.belongsToMany(Prop, {through: 'cart'});
 
 
 
