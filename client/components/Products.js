@@ -4,7 +4,7 @@ import {getProducts} from '../store/productsreducer'
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import {addToCart} from '../store/cartReducer'
+import {addToCart, loginAddingToCart} from '../store/cartReducer'
 import { Link } from 'react-router-dom';
 
 
@@ -12,6 +12,7 @@ export class Products extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.logInHandleClick = this.logInHandleClick.bind(this);
   }
   componentDidMount() {
     this.props.getProducts();
@@ -20,6 +21,12 @@ export class Products extends React.Component {
   handleClick(product) {
     this.props.addToCart(product);
     this.props.addingToCart;
+  }
+  logInHandleClick(userId, product) {
+    console.log("userId", userId);
+    console.log("product", product);
+      this.props.loginAddingToCart(userId, product);
+
   }
 
   render() {
@@ -43,9 +50,8 @@ export class Products extends React.Component {
                 <Card.Text>${product.price / 100}</Card.Text>
 
                 {this.props.isLoggedIn ? (
-                  <Button>
-                    need to create this still (calling thunk and working with
-                    database)
+                  <Button onClick={() => this.logInHandleClick(this.props.userId, product)}> 
+
                   </Button>
                 ) : (
                   <Button
@@ -70,13 +76,15 @@ const mapState = (state) => {
   return {
     products: state.productsReducer,
     isLoggedIn: !!state.auth.id,
+    userId: state.auth.id,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return{
     getProducts: () => dispatch(getProducts()),
-    addToCart: (product) => dispatch(addToCart(product))
+    addToCart: (product) => dispatch(addToCart(product)),
+    loginAddingToCart: (userId, product) => dispatch(loginAddingToCart(userId, product))
   }
 }
 

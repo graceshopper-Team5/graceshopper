@@ -2,8 +2,9 @@ import axios from "axios";
 
 const ADD_TO_CART = "ADD_TO_CART";
 const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
-const DELETE_PRODUCT = "DELETE_PRODUCT"
-const CHANGE_QUANTITY = "CHANGE_QUANTITY"
+const DELETE_PRODUCT = "DELETE_PRODUCT";
+const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+const LOGIN_ADD_TO_CART = "LOGIN_ADD_TO_CART";
 
 
 export const addToCart = (product) => {
@@ -33,6 +34,13 @@ export const getCartProducts = (products) => {
   };
 };
 
+export const login_add_to_cart = (cart) => {
+  return {
+    type: LOGIN_ADD_TO_CART,
+    cart
+  }
+}
+
 //THUNKS
 export const loginChangeQuantity = (id, update) => {
   return async (dispatch) => {
@@ -45,17 +53,19 @@ export const loginChangeQuantity = (id, update) => {
   }
 }
 
-export const guestChangeQuanity = (updatedProduct)=>{
-  return async (dispatch) =>{
+// export const guestChangeQuanity = (updatedProduct)=>{
+//   return async (dispatch) =>{
     
-  }
-}
+//   }
+// }
 
 export const loginAddingToCart = (userId, addedProduct) =>{
   return async (dispatch) =>{
     try{
-      const {data} = await axios.put(`/api/products/cart/${userId}`, addedProduct)
-      dispatch(addToCart(data))
+      console.log("Are we here?");
+      const {data} = await axios.post(`/api/users/${userId}/cart`, addedProduct)
+      console.log("Did we get data?", data)
+      dispatch(data);
     }catch(err){
       console.log(err)
     }
@@ -72,7 +82,9 @@ export default function cartReducer(state = initState, action) {
     case DELETE_PRODUCT:
       return [...state.filter(product => product.id !== action.product.id)]
     case CHANGE_QUANTITY:
-      return state.map((product) => (product.id === action.product.id ? action.product : product))
+      return state.map((product) => (product.id === action.product.id ? action.product : product));
+    case LOGIN_ADD_TO_CART:
+      return [...state, action.cart];
     default:
       return state;
   }
