@@ -51,7 +51,7 @@ export class Products extends React.Component {
 
                 {this.props.isLoggedIn ? (
                   <Button onClick={() => this.logInHandleClick(this.props.userId, product)}> 
-
+                  Add to cart
                   </Button>
                 ) : (
                   <Button

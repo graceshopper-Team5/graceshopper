@@ -86,8 +86,8 @@ router.put('/users/:id', async (req, res, next) => {
   }
 });
 
-//adding a product to the cart table 
-//NEED NEW ROUTE!!!! api/order/:id vv <-- need to create this!!! 
+// adding a product to the cart table 
+// NEED NEW ROUTE!!!! api/order/:id vv <-- need to create this!!! 
 // router.post("/cart/:id", async (req, res, next)=>{
 //   try{
 //     const addedProduct = req.body //addedProduct 
@@ -95,9 +95,27 @@ router.put('/users/:id', async (req, res, next) => {
 
 //     const theUser = await User.findbyPk(id, {include: Order})
 //     console.log(theUser)
+//     //Amber:
+// const [order, created] = await Order.findOrCreate({
+//   where: {
+//     userId: req.params.id,
+//     status: false
+//   }
+// })
+// if this exists, then it will find that order and we can add our product to it using magic methods: order.addProduct(addedProduct) <-- console log the magic methods to double check!
+//if it does not exist, it will create a new order with the corresponding userId and then we can add a product to it !
+  // Amber end
+//     User.findOrCreate()
 //     //User.addChild(updatedProduct)
 
 //   }catch(err){
 //     next(err)
 //   }
 // })
+
+const [user, created] = await User.findOrCreate({
+  where: { username: 'sdepold' },
+  defaults: {
+    job: 'Technical Lead JavaScript'
+  }
+});
