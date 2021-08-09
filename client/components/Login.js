@@ -1,17 +1,18 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {authenticateLogin} from '../store'
-import {createUser} from '../store/usersReducer';
+import React from "react";
+import { connect } from "react-redux";
+import { authenticateLogin } from "../store";
+import { createUser } from "../store/usersReducer";
+import { Link } from "react-router-dom";
 
 /**
  * COMPONENT
  */
-const Login = props => {
-  const {name, displayName, handleSubmit, error} = props
+const Login = (props) => {
+  const { name, displayName, handleSubmit, error } = props;
   return (
     <div>
       <h1>
-          Welcome to Prop House! NYC's largest collection of film memoribillia.
+        Welcome to Prop House! NYC's largest collection of film memoribillia.
       </h1>
       {/* handles pre-existing user logging in */}
       <form onSubmit={handleSubmit} name={name}>
@@ -35,8 +36,8 @@ const Login = props => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
@@ -45,24 +46,24 @@ const Login = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+const mapLogin = (state) => {
   return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-  }
-}
+    name: "login",
+    displayName: "Login",
+    error: state.auth.error,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      dispatch(authenticateLogin(email, password))
-    }
-  }
-}
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      dispatch(authenticateLogin(email, password));
+    },
+  };
+};
 
-export default connect(mapLogin, mapDispatch)(Login)
+export default connect(mapLogin, mapDispatch)(Login);
