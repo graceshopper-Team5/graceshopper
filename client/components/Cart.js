@@ -1,20 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getCartProducts, deleteProduct , changeQuantity} from "../store/cartReducer";
+import { getCartProducts, deleteProduct , changeQuantity, getLoggedInCart} from "../store/cartReducer";
 import { Card, Button } from "react-bootstrap";
+import Routes from "../Routes";
 
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.State ={
-      quanity: 1
+    this.state ={
+      quantity: 1
     }
     this.handleClick = this.handleClick.bind(this);
     // this.changeClick = this.changeClick.bind(this)
   }
 
   componentDidMount() {
+    // boolean different thunk if user is logged in
+    // gets the products if the user is not logged in
     this.props.getCartProducts();
+    // getting cart from DB
+    this.props.getLoggedInCart();
   }
 
   handleClick(product) {
@@ -66,14 +71,19 @@ export class Cart extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
+  // taking state and products
   console.log("state", state);
   return {
-    products: state.addedProducts,
+    products: state.addedItems,
+    isLoggedIn: !!state.auth.id
   };
 };
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
+  getLoggedInCart: (id) => dispatch(getLoggedInCart(id)),
+    // get Cart products only relies on state
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
     // changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))

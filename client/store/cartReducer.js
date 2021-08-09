@@ -5,6 +5,7 @@ const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const LOGIN_ADD_TO_CART = "LOGIN_ADD_TO_CART";
+const LOGIN_GET_CART = "LOGIN_GET_CART"
 
 
 export const addToCart = (product) => {
@@ -22,7 +23,7 @@ export const getCartProducts = (products) => {
 };
  export const deleteProduct = (product) =>{
    return {
-     type: DELETE_PRODUCT, 
+     type: DELETE_PRODUCT,
      product
    }
  }
@@ -41,6 +42,13 @@ export const login_add_to_cart = (cart) => {
   }
 }
 
+export const login_get_cart = (cart) => {
+  return {
+    type: LOGIN_GET_CART,
+    cart
+  }
+}
+
 //THUNKS
 export const loginChangeQuantity = (id, update) => {
   return async (dispatch) => {
@@ -53,18 +61,27 @@ export const loginChangeQuantity = (id, update) => {
   }
 }
 
-// export const guestChangeQuanity = (updatedProduct)=>{
-//   return async (dispatch) =>{
-    
-//   }
-// }
+// THUNK for getting logged in user's CART
+export const getLoggedInCart = (userId) => {
+return async (dispatch) => {
+  try {
+    const {data} = await axios.get(`/api/users/${userId}/cart`)
+  } catch (err) {
+    console.log(err)
+  }
+}
+}
 
+
+// THUNK for modifying logged in user's Cart
 export const loginAddingToCart = (userId, addedProduct) =>{
   return async (dispatch) =>{
     try{
       console.log("Are we here?");
+      // changing and fetching the cart
       const {data} = await axios.post(`/api/users/${userId}/cart`, addedProduct)
       console.log("Did we get data?", data)
+      // entire cart we pulled on 73-77 of user api route
       dispatch(data);
     }catch(err){
       console.log(err)
@@ -83,8 +100,12 @@ export default function cartReducer(state = initState, action) {
       return [...state.filter(product => product.id !== action.product.id)]
     case CHANGE_QUANTITY:
       return state.map((product) => (product.id === action.product.id ? action.product : product));
+  // re-distribute the data in the cart onto the state
+  // take dispatched data and set to state
     case LOGIN_ADD_TO_CART:
       return [...state, action.cart];
+    case LOGIN_GET_CART:
+      return state;
     default:
       return state;
   }
