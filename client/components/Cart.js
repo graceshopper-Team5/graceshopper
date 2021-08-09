@@ -4,36 +4,58 @@ import {
   getCartProducts,
   deleteProduct,
   changeQuantity,
+  getLoggedInCart,
+  clear_cart,
+  _clear_loggedin_cart,
 } from "../store/cartReducer";
-import Checkout from "./Checkout";
+import Checkout from './Checkout'
 import { Card, Button, Row, Container, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
+import {Link} from 'react-router-dom'
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.State = {
-      quanity: 1,
+    this.state = {
+      quantity: 1,
+      addedProducts: [],
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleClearCartClick = this.handleClearCartClick.bind(this);
     // this.changeClick = this.changeClick.bind(this)
   }
 
   componentDidMount() {
-    this.props.getCartProducts();
+    // boolean different thunk if user is logged in
+    // gets the products if the user is not logged in
+    console.log("this.props", this.props);
+    let products = this.props.isLoggedIn
+      ? this.props.getLoggedInCart(this.props.userId)
+      : this.props.getCartProducts();
+    this.setState({
+      addedProducts: products,
+    });
+    console.log("this.props inside component did mount", this.props);
+    // getting cart from DB
   }
 
   handleClick(product) {
     this.props.deleteProduct(product);
+  }
+
+  handleClearCartClick() {
+    this.props.isLoggedIn
+      ? this.props._clear_loggedin_cart(this.props.userId)
+      : this.props.clear_cart();
   }
   // changeClick(product, increase){
   //   this.props.changeQuantity(product,increase)
   // }
 
   render() {
-    //add the checkout feacture
-    let addedItems = this.props.products.length ? (
-      this.props.products.map((product) => {
+    // add the checkout feacture
+    let addedItems = this.props.addedProducts.length ? (
+      (console.log("this.props.addedProducts", this.props.addedProducts),
+      console.log("this.props", this.props),
+      this.props.addedProducts.map((product) => {
         return (
           <div className="collection-item avatar" key={product.id}>
             <Container>
@@ -67,7 +89,7 @@ export class Cart extends React.Component {
             </Container>
           </div>
         );
-      })
+      }))
     ) : (
       <p>Nothing.</p>
     );
@@ -83,21 +105,39 @@ export class Cart extends React.Component {
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
+        <Button variant="primary" onClick={() => this.handleClearCartClick()}>
+          <Link className="linkedButton" to='/checkout' >
+          GIMME, GIMME, GIMME
+         </Link>
+        </Button>
+        <Button variant="primary" onClick={() => this.handleClearCartClick()}>
+          Clear Cart
+        </Button>
       </div>
     );
   }
 }
 const mapStateToProps = (state) => {
+  // taking state and products
   console.log("state", state);
   return {
-    products: state.addedProducts,
+    isLoggedIn: !!state.auth.id,
+    addedProducts: state.addedProducts,
+    userId: state.auth.id
+    // products: !state.auth.id
+    //   ? this.props.getLoggedInCart()
+    //   : state.addedProducts,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getLoggedInCart: (id) => dispatch(getLoggedInCart(id)),
+    clear_cart: () => dispatch(clear_cart()),
+    // get Cart products only relies on state
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
+    _clear_loggedin_cart: (id) => dispatch(_clear_loggedin_cart(id)),
     // changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
   };
 };
