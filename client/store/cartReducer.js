@@ -57,9 +57,10 @@ export const clear_cart = () => {
 }
 }
 
-export const clear_loggedin_cart = () => {
+export const clear_loggedin_cart = (id) => {
   return {
-    type: CLEAR_LOGGEDIN_CART
+    type: CLEAR_LOGGEDIN_CART,
+    id
   }
 }
 
@@ -81,7 +82,7 @@ return async (dispatch) => {
   try {
     const {data} = await axios.get(`/api/users/${userId}/cart`);
     console.log("data in get route", data);
-    dispatch(data);
+    dispatch(addToCart(data));
   } catch (err) {
     console.log(err)
   }
@@ -98,7 +99,7 @@ export const loginAddingToCart = (userId, addedProduct) =>{
       const {data} = await axios.post(`/api/users/${userId}/cart`, addedProduct)
       console.log("Did we get data?", data)
       // entire cart we pulled on 73-77 of user api route
-      dispatch(data);
+      dispatch(addToCart(data));
     }catch(err){
       console.log(err)
     }
@@ -108,8 +109,8 @@ export const loginAddingToCart = (userId, addedProduct) =>{
 export const _clear_loggedin_cart = (userId) => {
   return async (dispatch) => {
     try {
-      let {data} = await axios.delete(`/api/users/${userId}/cart`);
-      dispatch(data);
+     await axios.delete(`/api/users/${userId}/cart`);
+      dispatch(clear_cart());
     } catch (err) {
       console.log(err);
     }

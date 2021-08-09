@@ -73,12 +73,11 @@ router.get("/:id/cart", async (req, res, next) => {
 router.delete("/:id/cart", async (req, res, next) => {
   try {
     const id = req.params.id;
-    const cart = await Cart.findAll({
+    await Cart.destroy({
       where: {
         userId: id,
       },
     });
-    //dropTable? destroy?
     res.send(id);
   } catch (e){
     next(e);
