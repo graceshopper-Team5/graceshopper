@@ -5,7 +5,9 @@ const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const LOGIN_ADD_TO_CART = "LOGIN_ADD_TO_CART";
-const LOGIN_GET_CART = "LOGIN_GET_CART"
+const LOGIN_GET_CART = "LOGIN_GET_CART";
+const CLEAR_CART = "CLEAR_CART";
+const CLEAR_LOGGEDIN_CART = "CLEAR_LOGGEDIN_CART";
 
 
 export const addToCart = (product) => {
@@ -49,6 +51,18 @@ export const login_get_cart = (cart) => {
   }
 }
 
+export const clear_cart = () => {
+  return {
+  type: CLEAR_CART,
+}
+}
+
+export const clear_loggedin_cart = () => {
+  return {
+    type: CLEAR_LOGGEDIN_CART
+  }
+}
+
 //THUNKS
 export const loginChangeQuantity = (id, update) => {
   return async (dispatch) => {
@@ -65,7 +79,9 @@ export const loginChangeQuantity = (id, update) => {
 export const getLoggedInCart = (userId) => {
 return async (dispatch) => {
   try {
-    const {data} = await axios.get(`/api/users/${userId}/cart`)
+    const {data} = await axios.get(`/api/users/${userId}/cart`);
+    console.log("data in get route", data);
+    dispatch(data);
   } catch (err) {
     console.log(err)
   }
@@ -89,6 +105,17 @@ export const loginAddingToCart = (userId, addedProduct) =>{
   }
 }
 
+export const _clear_loggedin_cart = (userId) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await axios.delete(`/api/users/${userId}/cart`);
+      dispatch(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
 const initState = [];
 export default function cartReducer(state = initState, action) {
   switch (action.type) {
@@ -105,6 +132,12 @@ export default function cartReducer(state = initState, action) {
     case LOGIN_ADD_TO_CART:
       return [...state, action.cart];
     case LOGIN_GET_CART:
+      return [...state, action.cart];
+    case CLEAR_CART:
+      state = [];
+      return state;
+    case CLEAR_LOGGEDIN_CART:
+      state = [];
       return state;
     default:
       return state;

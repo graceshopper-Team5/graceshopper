@@ -64,7 +64,23 @@ router.get("/:id/cart", async (req, res, next) => {
     where: {
       userId: id,
     }});
+    res.send(cart);
   } catch (e) {
+    next(e);
+  }
+})
+
+router.delete("/:id/cart", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const cart = await Cart.findAll({
+      where: {
+        userId: id,
+      },
+    });
+    //dropTable? destroy?
+    res.send(id);
+  } catch (e){
     next(e);
   }
 })
