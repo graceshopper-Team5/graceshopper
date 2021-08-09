@@ -97,6 +97,16 @@ async function seed() {
       description:
         "Forrest Gump's mama always said, 'Life is like a box of chocolates--you never know what you're gonna get.'  This box of cheap American chocolates contains many different flavors, none of them good except cherry.  Because this is the original box of chocolates, they have been out of date for almost thirty years.  We take no responsibility if you choose to eat them.",
     }),
+    Prop.create({
+      name: "Wilson",
+      movieTitle: "Castaway",
+      movieYear: 2000,
+      price: 2000,
+      imageUrl:
+        "https://i.pinimg.com/originals/ed/c6/2d/edc62dfa8ea898b323f7959bccfb99d1.jpg",
+      description:
+        "Lonely and looking for a companion? This bad buoy will keep you company. Warranty does not cover any items that get whisked away by the sea.",
+    }),
   ]);
 
   console.log(`seeded ${users.length} users`);
