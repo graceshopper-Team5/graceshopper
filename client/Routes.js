@@ -7,6 +7,7 @@ import {me} from './store'
 import Products from './components/Products'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 
 /**
  * COMPONENT
@@ -22,9 +23,7 @@ class Routes extends Component {
     return (
       <div>
         <main>
-        <h1>
-          Welcome to Prop House! NYC's largest collection of film memoribillia.
-        </h1>
+        
         </main>
         {isLoggedIn ? (
           // when user is logged in
@@ -37,6 +36,7 @@ class Routes extends Component {
             <Route exact path="/products" component={Products} />
             {/* render single product view */}
             <Route exact path="/products/:id" component={SingleProduct} />
+            <Route exact path="/checkout" component={Checkout} />
             {/* <Redirect to="/home" /> */}
 
           </Switch>

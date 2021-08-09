@@ -4,6 +4,7 @@ import {getProducts} from '../store/productsreducer'
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import {Container, Row, Col} from 'react-bootstrap';
 import {addToCart, loginAddingToCart} from '../store/cartReducer'
 import { Link } from 'react-router-dom';
 
@@ -35,34 +36,40 @@ export class Products extends React.Component {
       <div className="grid">
         {this.props.products.length > 0 ? (
           products.map((product) => (
-            <Card key={product.id} style={{ width: "300px" }}>
-              <Link to={`products/${product.id}`}>
-                <Card.Img
-                  variant="top"
-                  src={product.imageUrl}
-                  style={{ width: "40vh" }}
-                />
-              </Link>
-              <Card.Body>
+            <div className="box">
+              <Card key={product.id} style={{ width: "18rem" }}>
                 <Link to={`products/${product.id}`}>
-                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Img
+                    variant="top"
+                    src={product.imageUrl}
+                    style={{ width: "18rem", height:"18rem" }}
+                  />
                 </Link>
-                <Card.Text>${product.price / 100}</Card.Text>
+                <Card.Body>
+                  <Link to={`products/${product.id}`}>
+                    <Card.Title>{product.name}</Card.Title>
+                  </Link>
+                  <Card.Text>${product.price / 100}</Card.Text>
 
-                {this.props.isLoggedIn ? (
-                  <Button onClick={() => this.logInHandleClick(this.props.userId, product)}> 
-                  Add to cart
-                  </Button>
-                ) : (
-                  <Button
-                    variant="primary"
-                    onClick={() => this.handleClick(product)}
-                  >
-                    Add to cart
-                  </Button>
-                )}
-              </Card.Body>
-            </Card>
+                  {this.props.isLoggedIn ? (
+                    <Button
+                      onClick={() =>
+                        this.logInHandleClick(this.props.userId, product)
+                      }
+                    >
+                      Add to cart
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      onClick={() => this.handleClick(product)}
+                    >
+                      Add to cart
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            </div>
           ))
         ) : (
           <h3>Nothing here yet!</h3>

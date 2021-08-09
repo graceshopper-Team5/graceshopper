@@ -11,6 +11,9 @@ const SignUp = props => {
 
   return (
     <div>
+      <h1>
+          Welcome to Prop House! NYC's largest collection of film memoribillia.
+        </h1>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">
