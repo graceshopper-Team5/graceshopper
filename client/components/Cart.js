@@ -1,16 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getCartProducts, deleteProduct , changeQuantity} from "../store/cartReducer";
-import Checkout from './Checkout'
-import { Card, Button } from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import {
+  getCartProducts,
+  deleteProduct,
+  changeQuantity,
+} from "../store/cartReducer";
+import Checkout from "./Checkout";
+import { Card, Button, Row, Container, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.State ={
-      quanity: 1
-    }
+    this.State = {
+      quanity: 1,
+    };
     this.handleClick = this.handleClick.bind(this);
     // this.changeClick = this.changeClick.bind(this)
   }
@@ -31,42 +35,54 @@ export class Cart extends React.Component {
     let addedItems = this.props.products.length ? (
       this.props.products.map((product) => {
         return (
-          <li className="collection-item avatar" key={product.id}>
-            <div className="item-img">
-              <img src={product.imageUrl} alt={product.imageUrl} className="" />
-            </div>
-
-            <div className="item-desc">
-              <span className="title">{product.name}</span>
-              <p>{product.description}</p>
-              <p>
-                <b>Price: {product.price}$</b>
-              </p>
-              <Button onClick ={() => this.changeClick(product.id, {increase:"increase"})} >increase</Button>
-              <Button
-                variant="primary"
-                onClick={() => this.handleClick(product)}
-              >
-                Remove
-              </Button>
-            </div>
-          </li>
+          <div className="collection-item avatar" key={product.id}>
+            <Container>
+              <Row className="justify-content-md-center">
+                <Col xs lg="2">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={product.imageUrl} />
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Text>Price: ${product.price / 100}</Card.Text>
+                    <div className="quantityButtons">
+                      <Button size="sm">-</Button>
+                      <h5> 1* </h5>
+                      <Button
+                        size="sm"
+                        onClick={() =>
+                          this.changeClick(product.id, { increase: "increase" })
+                        }
+                      >
+                        +
+                      </Button>
+                    </div>
+                    <Button
+                      variant="danger"
+                      onClick={() => this.handleClick(product)}
+                    >
+                      Remove
+                    </Button>
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         );
       })
     ) : (
       <p>Nothing.</p>
     );
+
     return (
       <div className="container">
+        <Button variant="primary">
+          <Link className="linkedButton" to="/checkout">
+            GIMME, GIMME, GIMME
+          </Link>
+        </Button>
         <div className="cart">
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
-        <Button variant="primary">
-          <Link className="linkedButton" to='/checkout' >
-          GIMME, GIMME, GIMME
-          </Link>
-          </Button>
       </div>
     );
   }
