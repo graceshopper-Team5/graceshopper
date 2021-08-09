@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getCartProducts, deleteProduct , changeQuantity} from "../store/cartReducer";
+import Checkout from './Checkout'
 import { Card, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
   constructor(props) {
@@ -60,7 +62,11 @@ export class Cart extends React.Component {
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
-        <Button variant="primary">GIMME, GIMME, GIMME</Button>
+        <Button variant="primary">
+          <Link className="linkedButton" to='/checkout' >
+          GIMME, GIMME, GIMME
+          </Link>
+          </Button>
       </div>
     );
   }

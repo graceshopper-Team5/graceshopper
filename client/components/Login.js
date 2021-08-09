@@ -10,6 +10,9 @@ const Login = props => {
   const {name, displayName, handleSubmit, error} = props
   return (
     <div>
+      <h1>
+          Welcome to Prop House! NYC's largest collection of film memoribillia.
+      </h1>
       {/* handles pre-existing user logging in */}
       <form onSubmit={handleSubmit} name={name}>
         <div>

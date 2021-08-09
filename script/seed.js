@@ -53,7 +53,7 @@ async function seed() {
       movieYear: 2018,
       price: 8468999,
       imageUrl:
-        "https://upload.wikimedia.org/wikipedia/en/a/af/Infinity_Gauntlet_1.jpg",
+        "https://images.fun.com/products/48447/1-1/thanos-infinity-gauntlet-coin-bank.jpg",
       description:
         "Mythical artifact of the Marvel Universe, created by Thanos to harness the power of all five Infinity Stones at once.  Famous for eliminating half of all life in the universe, controversially reversed by the Avengers in Endgame.",
     }),
