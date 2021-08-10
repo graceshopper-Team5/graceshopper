@@ -8,9 +8,9 @@ import {
   clear_cart,
   _clear_loggedin_cart,
 } from "../store/cartReducer";
-import Checkout from './Checkout'
+import Checkout from "./Checkout";
 import { Card, Button, Row, Container, Col } from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,8 @@ export class Cart extends React.Component {
     this.props.deleteProduct(product);
   }
 
-  handleClearCartClick() {
+  handleClearCartClick(id) {
+    console.log("We clicked the button!!!");
     this.props.isLoggedIn
       ? this.props._clear_loggedin_cart()
       : this.props.clear_cart();
@@ -51,7 +52,6 @@ export class Cart extends React.Component {
   render() {
     // add the checkout feature
     let addedItems = this.props.addedProducts.length ? (
-      (
       this.props.addedProducts.map((product) => {
         return (
           <div className="collection-item avatar" key={product.id}>
@@ -86,10 +86,10 @@ export class Cart extends React.Component {
             </Container>
           </div>
         );
-      }))
+      })
     ) : (
       <div className="Title">
-      <p>Nothing.</p>
+        <p>Nothing.</p>
       </div>
     );
 
@@ -100,11 +100,11 @@ export class Cart extends React.Component {
           <ul className="collection">{addedItems}</ul>
         </div>
         <Button variant="primary" onClick={() => this.handleClearCartClick()}>
-          <Link className="linkedButton" to='/checkout' >
-          GIMME, GIMME, GIMME
-         </Link>
+          <Link className="linkedButton" to="/checkout">
+            GIMME, GIMME, GIMME
+          </Link>
         </Button>
-        <Button variant="primary" onClick={() => this.handleClearCartClick()}>
+        <Button variant="primary" onClick={this.handleClearCartClick}>
           Clear Cart
         </Button>
       </div>
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
     addedProducts: state.addedProducts,
-    userId: state.auth.id
+    userId: state.auth.id,
   };
 };
 

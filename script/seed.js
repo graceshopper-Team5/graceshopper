@@ -229,7 +229,7 @@ async function seed() {
       name: "Lucy Lou Who Record Player",
       movieTitle: "The Grinch",
       movieYear: 2000,
-      price: 000,
+      price: 3000,
       imageUrl: "https://4.bp.blogspot.com/-O9PjHEnh0Vo/UT51vfAssyI/AAAAAAABCwM/7eebF5UM6_c/s1600/Grinch+record+player+film+prop.jpg",
       description: "Original Ballerina record player prop from The Grinch."
     }),
