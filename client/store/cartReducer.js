@@ -3,7 +3,7 @@ import axios from "axios";
 const ADD_TO_CART = "ADD_TO_CART";
 const GET_CART_PRODUCTS = "GET_CART_PRODUCTS";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
-const CHANGE_QUANTITY = "CHANGE_QUANTITY";
+// const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const LOGIN_ADD_TO_CART = "LOGIN_ADD_TO_CART";
 const LOGIN_GET_CART = "LOGIN_GET_CART";
 const CLEAR_CART = "CLEAR_CART";
@@ -30,12 +30,12 @@ export const getCartProducts = (products) => {
    }
  }
 
- export const change_Quantity = (product) => {
-  return {
-    type: CHANGE_QUANTITY,
-    product,
-  };
-};
+//  export const change_Quantity = (product) => {
+//   return {
+//     type: CHANGE_QUANTITY,
+//     product,
+//   };
+// };
 
 export const login_add_to_cart = (cart) => {
   return {
@@ -64,31 +64,30 @@ export const clear_loggedin_cart = (id) => {
   }
 }
 
-//THUNKS
-export const loginChangeQuantity = (id, update) => {
-  return async (dispatch) => {
-    try {
-      const {data} = await axios.put(`/api/cart`, update, 
-      { headers: {
-        'Authorization': localStorage.getItem('token'),
-       
-      }
-    })
-      dispatch(change_Quantity(data))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+// //THUNKS
+// export const loginChangeQuantity = (id, update) => {
+//   return async (dispatch) => {
+//     try {
+//       const {data} = await axios.put(`/api/cart`, update,
+//       { headers: {
+//         'Authorization': localStorage.getItem('token'),
+//       }
+//     })
+//       dispatch(change_Quantity(data))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
 
 // THUNK for getting logged in user's CART
 export const getLoggedInCart = () => {
 return async (dispatch) => {
   try {
-    const {data} = await axios.get(`/api/cart`, 
+    const {data} = await axios.get(`/api/cart`,
     { headers: {
       'Authorization': localStorage.getItem('token'),
-     
+
     }
   });
     dispatch(addToCart(data));
@@ -104,10 +103,10 @@ export const loginAddingToCart = (addedProduct) =>{
   return async (dispatch) =>{
     try{
       // changing and fetching the cart
-      const {data} = await axios.post(`/api/cart`, addedProduct, 
+      const {data} = await axios.post(`/api/cart`, addedProduct,
       { headers: {
         'Authorization': localStorage.getItem('token'),
-       
+
       }
     })
       // entire cart we pulled on 73-77 of user api route
@@ -121,10 +120,10 @@ export const loginAddingToCart = (addedProduct) =>{
 export const _clear_loggedin_cart = () => {
   return async (dispatch) => {
     try {
-     await axios.delete(`/api/cart`, 
+     await axios.delete(`/api/cart`,
      { headers: {
        'Authorization': localStorage.getItem('token'),
-      
+
      }
    });
       dispatch(clear_cart());
@@ -143,8 +142,8 @@ export default function cartReducer(state = initState, action) {
       return state;
     case DELETE_PRODUCT:
       return [...state.filter(product => product.id !== action.product.id)]
-    case CHANGE_QUANTITY:
-      return state.map((product) => (product.id === action.product.id ? action.product : product));
+    // case CHANGE_QUANTITY:
+    //   return state.map((product) => (product.id === action.product.id ? action.product : product));
   // re-distribute the data in the cart onto the state
   // take dispatched data and set to state
     case LOGIN_ADD_TO_CART:

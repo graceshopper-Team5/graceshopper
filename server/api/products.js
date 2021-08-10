@@ -5,6 +5,7 @@ const {
 const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
 module.exports = router;
 
+
 // fetches  all products/ items
 router.get("/", async (req, res, next) => {
   try {
@@ -62,21 +63,16 @@ router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
 })
 
 //THIS IS THE USER UPDATING THE CART
-router.put('/users/:id', requireToken, async (req, res, next) => {
+router.put('/:id/update', async (req, res, next) => {
   try {
-    // const prop = await Prop.findByPk(req.params.id,
-    //   {include: Order});
-    const cart = await Cart.findOne(
-      {where:
-        {propId: req.params.id}})
-    
-    if(req.body.increase === "increase"){
-      cart.quantity++
+    const prop = await Prop.findByPk(req.params.id)
+    if(req.body.type=== "increase"){
+      prop.quantity++
     }else{
-      cart.quantity --
+      prop.quantity --
     }
-    console.log("cart.quantity" , cart.quantity)
-    res.send(cart);
+    console.log("HERE IS PROP.quantity" , prop.quantity)
+    res.send(prop);
   } catch (error) {
     next(error);
   }
