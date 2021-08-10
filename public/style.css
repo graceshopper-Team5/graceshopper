@@ -22,6 +22,10 @@ form div {
   display: inline-block;
 }
 
+.collection {
+  color: black;
+}
+
 .grid {
   min-height: 100%;
   display: flex;
@@ -29,7 +33,7 @@ form div {
   flex-direction: row;
   margin-left: 8%;
 }
-.grid.Title {
+.Title {
   color: white;
 }
 

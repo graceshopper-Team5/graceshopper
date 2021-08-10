@@ -10,7 +10,7 @@ const SignUp = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="grid Title">
       <h1>
           Welcome to Prop House! NYC's largest collection of film memoribillia.
         </h1>

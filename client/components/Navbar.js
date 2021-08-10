@@ -25,7 +25,9 @@ const Navbar = ({ handleClick, isLoggedIn, userName }) => (
               Logout
             </a>
           </div>
+          <div className="grid Title">
           <h5> Welcome, {userName}!</h5>
+          </div>
         </div>
       ) : (
         <div>

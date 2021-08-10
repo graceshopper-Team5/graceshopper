@@ -96,12 +96,7 @@ export class Cart extends React.Component {
 
     return (
       <div className="container">
-        <Button variant="primary">
-          <Link className="linkedButton" to="/checkout">
-            GIMME, GIMME, GIMME
-          </Link>
-        </Button>
-        <div className="cart">
+        <div className="cart Title">
           <h5>You have ordered:</h5>
           <ul className="collection">{addedItems}</ul>
         </div>
