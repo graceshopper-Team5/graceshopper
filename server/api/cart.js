@@ -5,6 +5,9 @@ const {
 const { /*requireToken,*/ isAdmin } = require('./gatekeepingMiddleware')
 module.exports = router;
 
+
+// o: is this being used?
+
 //cart handles all unfulfilled order
 //cart has quantity, product, and user
 

@@ -68,6 +68,7 @@ export const clear_loggedin_cart = (id) => {
 export const loginChangeQuantity = (id, update) => {
   return async (dispatch) => {
     try {
+      // o: having your route structured this way is a security concern
       const {data} = await axios.put(`/api/products/users/${id}`, update)
       dispatch(change_Quantity(data))
     } catch (error) {
@@ -80,6 +81,7 @@ export const loginChangeQuantity = (id, update) => {
 export const getLoggedInCart = (userId) => {
 return async (dispatch) => {
   try {
+    // o: having your route structured this way is a security concern
     const {data} = await axios.get(`/api/users/${userId}/cart`);
     console.log("data in get route", data);
     dispatch(addToCart(data));
@@ -95,6 +97,8 @@ export const loginAddingToCart = (userId, addedProduct) =>{
   return async (dispatch) =>{
     try{
       console.log("Are we here?");
+
+      // o: having your route structured this way is a security concern
       // changing and fetching the cart
       const {data} = await axios.post(`/api/users/${userId}/cart`, addedProduct)
       console.log("Did we get data?", data)
@@ -109,6 +113,7 @@ export const loginAddingToCart = (userId, addedProduct) =>{
 export const _clear_loggedin_cart = (userId) => {
   return async (dispatch) => {
     try {
+    // o: having your route structured this way is a security concern
      await axios.delete(`/api/users/${userId}/cart`);
       dispatch(clear_cart());
     } catch (err) {

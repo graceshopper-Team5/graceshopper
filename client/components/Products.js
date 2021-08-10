@@ -47,6 +47,7 @@ export class Products extends React.Component {
                   <Link to={`products/${product.id}`}>
                     <Card.Title>{product.name}</Card.Title>
                   </Link>
+                  {/* o: since you are doing this a lot, maybe create function */}
                   <Card.Text>${product.price / 100}</Card.Text>
 
                   {this.props.isLoggedIn ? (

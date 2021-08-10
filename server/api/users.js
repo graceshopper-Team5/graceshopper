@@ -34,6 +34,7 @@ router.get("/:id", /*requireToken,*/ isAdmin, async (req, res, next) => {
 
 router.delete("/:id", /*requireToken,*/ isAdmin, async (req, res, next) => {
   try {
+    // o: you can do this in one query => https://sequelizedocs.fullstackacademy.com/inserting-updating-destroying/#modelupdate
     const user = await User.findByPk(req.params.id);
     await user.destroy();
     res.send(user);
@@ -54,6 +55,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// o: you can get userId from req.user
+
 // FETCHES the cart
 router.get("/:id/cart", async (req, res, next) => {
   try {
@@ -70,6 +73,7 @@ router.get("/:id/cart", async (req, res, next) => {
   }
 })
 
+// o: you can get userId from req.user
 router.delete("/:id/cart", async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -84,6 +88,8 @@ router.delete("/:id/cart", async (req, res, next) => {
   }
 })
 
+// o: you have two things stored as id on both body and params (change name)
+//  also, what is happening below???
 router.post("/:id/cart", async (req, res, next) => {
   try {
     // pulling the user ID

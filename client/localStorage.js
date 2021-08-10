@@ -1,3 +1,4 @@
+// o: where is this being used exactly???
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
