@@ -15,7 +15,7 @@ export class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 1,
+      quantity: 2,
       addedProducts: [],
     };
     this.handleClick = this.handleClick.bind(this);
@@ -64,7 +64,7 @@ export class Cart extends React.Component {
                     <Card.Text>Price: ${product.price / 100}</Card.Text>
                     <div className="quantityButtons">
                       <Button size="sm">-</Button>
-                      <h5> 1* </h5>
+                      <h5> {this.state.quantity} </h5>
                       <Button
                         size="sm"
                         onClick={() =>
