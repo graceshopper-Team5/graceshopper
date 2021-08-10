@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import {
   getCartProducts,
   deleteProduct,
-  changeQuantity,
   getLoggedInCart,
   clear_cart,
   _clear_loggedin_cart,
 } from "../store/cartReducer";
+import {loginChangeQuantity} from "../store/productsreducer"
 import Checkout from './Checkout'
 import { Card, Button, Row, Container, Col } from "react-bootstrap";
 import {Link} from 'react-router-dom'
@@ -15,12 +15,11 @@ export class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 2,
       addedProducts: [],
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleClearCartClick = this.handleClearCartClick.bind(this);
-    // this.changeClick = this.changeClick.bind(this)
+    this.handleIncreaseClick = this.handleIncreaseClick.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +33,9 @@ export class Cart extends React.Component {
     });
     // getting cart from DB
   }
+  handleIncreaseClick(product, update){
+    this.props.changeQuantity(product,update)
+  }
 
   handleClick(product) {
     this.props.deleteProduct(product);
@@ -44,9 +46,7 @@ export class Cart extends React.Component {
       ? this.props._clear_loggedin_cart()
       : this.props.clear_cart();
   }
-  // changeClick(product, increase){
-  //   this.props.changeQuantity(product,increase)
-  // }
+
 
   render() {
     // add the checkout feature
@@ -64,11 +64,11 @@ export class Cart extends React.Component {
                     <Card.Text>Price: ${product.price / 100}</Card.Text>
                     <div className="quantityButtons">
                       <Button size="sm">-</Button>
-                      <h5> {this.state.quantity} </h5>
+                      <h5> {product.quantity} </h5>
                       <Button
                         size="sm"
                         onClick={() =>
-                          this.changeClick(product.id, { increase: "increase" })
+                        this.handleIncreaseClick(product.id,{type:"increase"})
                         }
                       >
                         +
@@ -120,7 +120,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+// history will be passed down to all thunks below
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
     getLoggedInCart: (id) => dispatch(getLoggedInCart(id)),
     clear_cart: () => dispatch(clear_cart()),
@@ -128,7 +129,7 @@ const mapDispatchToProps = (dispatch) => {
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
     _clear_loggedin_cart: () => dispatch(_clear_loggedin_cart()),
-    // changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
+    changeQuantity: (product, increase) => dispatch(loginChangeQuantity(product, increase))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

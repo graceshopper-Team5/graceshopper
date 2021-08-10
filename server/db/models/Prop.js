@@ -4,26 +4,30 @@ const axios = require('axios');
 
 const Prop = db.define('prop', {
   name: {
-    type: Sequelize.STRING, 
+    type: Sequelize.STRING,
     allowNull: false
-  }, 
+  },
   movieTitle:{
-    type: Sequelize.STRING, 
+    type: Sequelize.STRING,
     allowNull: false
-  }, 
+  },
   movieYear: {
     type: Sequelize.INTEGER
-  }, 
+  },
   price:{
-    type: Sequelize.INTEGER, 
+    type: Sequelize.INTEGER,
     allowNull: false
-  }, 
+  },
   imageUrl:{
     type: Sequelize.TEXT,
     default: "https://en.wikipedia.org/wiki/Clapperboard#/media/File:ClapperboardColor.svg"
-  }, 
+  },
   description: {
     type: Sequelize.TEXT,
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1,
   }
 })
-module.exports = Prop; 
+module.exports = Prop;
