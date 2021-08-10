@@ -109,43 +109,37 @@ async function seed() {
     }),
 
     Prop.create({
-      name: "Jennifer's Body Cheer Uniform",
+      name: "Megan Fox Hoodie",
       movieTitle: "Jennifer's Body",
       movieYear: 2009,
-      price: 1500,
-      imageUrl:
-        "- https://dygtyjqp7pi0m.cloudfront.net/i/16881/17281845_1.jpg?v=8D082BCA65E4B60",
-      description:
-        "Original costume worn by Megan Fox in the iconic cult movie of the 2000s.",
+      price: 150000,
+      imageUrl:"https://cdn.shopify.com/s/files/1/0356/5944/8364/products/hearthoodiefullfrontcopy_1024x1024@2x.jpg?v=1615216443",
+      description:"Original Marc Jacobs hoodie worn by Megan Fox in the iconic cult movie of the 2000s.",
     }),
 
     Prop.create({
       name: "Ghost Orchid",
       movieTitle: "Adaptation",
       movieYear: 2002,
-      price: 4000,
-      imageUrl:
-        "https://www.paradisecoast.com/sites/default/files/profiles/photos/listing-658-ghost%20cropped.jpg",
-      description:
-        "Extremely rare preserved ghost orchid sourced from Miami, Florida from the 2002 film wwith Nicholas Cage and Meryl Streep.",
+      price: 400000,
+      imageUrl:"https://www.paradisecoast.com/sites/default/files/profiles/photos/listing-658-ghost%20cropped.jpg",
+      description: "Extremely rare preserved ghost orchid sourced from Miami, Florida from the 2002 film wwith Nicholas Cage and Meryl Streep.",
     }),
 
     Prop.create({
-      name: "Blair Witch Wooden Armature",
+      name: "Wooden Armature",
       movieTitle: "The Blair Witch Project",
       movieYear: 1999,
-      price: 2200,
-      imageUrl:
-        "https://i.pinimg.com/originals/4a/e9/3b/4ae93b05bbf9509b079624a834c77497.jpg",
-      description:
-        "Haunting wooden stick figure from the legendary 90s horror film.",
+      price: 220000,
+      imageUrl:"https://i.pinimg.com/originals/4a/e9/3b/4ae93b05bbf9509b079624a834c77497.jpg",
+      description:"Haunting wooden stick figure from the legendary 90s horror film.",
     }),
 
     Prop.create({
       name: "JAWS Shark",
       movieTitle: "JAWS",
       movieYear: 1975,
-      price: 20000,
+      price: 2000000,
       imageUrl:
         "https://lh3.googleusercontent.com/proxy/LsT1gJWbYSg17lp3iID12zyjKSRzhK9irddU1XEinUc5UuOy5mfWZXFGC1yZTbYUfHiR841QEj2b_3eEMyd70rY_rc2XUgZuFTFGbkodycyfhQQ6kMjMGw",
       description:
@@ -156,7 +150,7 @@ async function seed() {
       name: "Blue Box",
       movieTitle: "Mullholland Drive",
       movieYear: 2001,
-      price: 3400,
+      price: 340000,
       imageUrl:
         "https://i.etsystatic.com/17882217/r/il/fdfc02/1875125946/il_570xN.1875125946_iwi0.jpg",
       description:
@@ -167,7 +161,7 @@ async function seed() {
       name: "Wizard of Oz Ruby Slippers",
       movieTitle: "The Wizard of Oz",
       movieYear: 1939,
-      price: 60000,
+      price: 6000000,
       imageUrl:
         "https://api.time.com/wp-content/uploads/2014/03/152593524.jpg",
       description:
@@ -175,10 +169,10 @@ async function seed() {
     }),
 
     Prop.create({
-      name: "Heart of the Ocean Blue Diamons",
+      name: "Heart of the Ocean",
       movieTitle: "Titanic",
       movieYear: 1997,
-      price: 55000,
+      price: 5500000,
       imageUrl:
         "https://www.heraldweekly.com/wp-content/uploads/2019/06/103990/GettyImages-529313176-iconicmovieprops-119326-p1.jpg",
       description:
@@ -186,10 +180,10 @@ async function seed() {
     }),
 
     Prop.create({
-      name: "Face-Off ",
+      name: "Face-Off",
       movieTitle: "Face Off",
       movieYear: 1997,
-      price: 14000,
+      price: 1400000,
       imageUrl:
         "https://i.redd.it/qr795ajbhwfz.jpg",
       description:
@@ -197,10 +191,10 @@ async function seed() {
     }),
 
     Prop.create({
-      name: "Romeo and Juliet Masquerade Ball Costumes",
+      name: "Masquerade Ball Costumes",
       movieTitle: "Romeo and Juliet",
       movieYear: 1968,
-      price: 80000,
+      price: 8000000,
       imageUrl:
         "http://www.romeo-juliet-club.ru/location/artena/rjcostumes.jpg",
       description:
@@ -211,7 +205,7 @@ async function seed() {
       name: "Mc-Fly Nike Sneakers",
       movieTitle: "Back to the Future",
       movieYear: 1985,
-      price: 90000,
+      price: 9000000,
       imageUrl: "http://www.elitetraveler.com/wp-content/uploads/2017/09/http-2F2Fs3-eu-west-1.amazonaws.com2Ffthtsi-assets-production2Fez2Fimages2F42F42F82F72F1307844-1-eng-GB2F01-04-72636_Marty-McFlys-Light-up-2015-Nike-Shoes_new_4.jpg",
       description: "Original Nike sneakers worn by Michael J Fox."
     }),
@@ -220,25 +214,25 @@ async function seed() {
       name: "The Twins Dresses",
       movieTitle: "The Shining",
       movieYear: 1980,
-      price: 30000,
+      price: 3000000,
       imageUrl: "https://2.bp.blogspot.com/-UmOE59NdWgM/UPsmoDe4TGI/AAAAAAAA-8s/T2Fbwchs2TI/s1600/Grady+sisters+Shining+costumes.jpg",
       description: "Original costumes worn in the Stanley Kubrick horror film."
     }),
 
     Prop.create({
-      name: "Lucy Lou Who Record Player",
+      name: "Whoville Record Player",
       movieTitle: "The Grinch",
       movieYear: 2000,
-      price: 000,
+      price: 700000,
       imageUrl: "https://4.bp.blogspot.com/-O9PjHEnh0Vo/UT51vfAssyI/AAAAAAABCwM/7eebF5UM6_c/s1600/Grinch+record+player+film+prop.jpg",
       description: "Original Ballerina record player prop from The Grinch."
     }),
 
     Prop.create({
-      name: "Wednesday Addams Wall Figure",
+      name: "Addams Wall Figure",
       movieTitle: "The Addams Family",
       movieYear: 1993,
-      price: 7000,
+      price: 700000,
       imageUrl: "https://1.bp.blogspot.com/-1UMvTmoRPlI/YJBrJUkP82I/AAAAAAADhYE/9hUWf2GjqC0Rd9vt3rs8rw_u3C4Ry0DOACLcBGAsYHQ/s800/christina%2Bricci%2Baddams%2Bfamily%2Bvalues%2Bcamouflaged%2Bprop.jpeg",
       description: "Wednesday Addams camoflauge mannequin of Cristina Ricci."
     }),
