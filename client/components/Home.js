@@ -6,7 +6,6 @@ import { Button, Container, Row, Col, Card } from "react-bootstrap";
 
 export class Home extends React.Component {
   render() {
-    console.log("this.props", this.props);
     return (
       <div>
         <div className="grid Title">

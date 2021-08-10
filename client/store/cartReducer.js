@@ -68,7 +68,12 @@ export const clear_loggedin_cart = (id) => {
 export const loginChangeQuantity = (id, update) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.put(`/api/products/users/${id}`, update)
+      const {data} = await axios.put(`/api/cart`, update, 
+      { headers: {
+        'Authorization': localStorage.getItem('token'),
+       
+      }
+    })
       dispatch(change_Quantity(data))
     } catch (error) {
       console.log(error)
@@ -77,11 +82,15 @@ export const loginChangeQuantity = (id, update) => {
 }
 
 // THUNK for getting logged in user's CART
-export const getLoggedInCart = (userId) => {
+export const getLoggedInCart = () => {
 return async (dispatch) => {
   try {
-    const {data} = await axios.get(`/api/users/${userId}/cart`);
-    console.log("data in get route", data);
+    const {data} = await axios.get(`/api/cart`, 
+    { headers: {
+      'Authorization': localStorage.getItem('token'),
+     
+    }
+  });
     dispatch(addToCart(data));
   } catch (err) {
     console.log(err)
@@ -91,13 +100,16 @@ return async (dispatch) => {
 
 
 // THUNK for modifying logged in user's Cart
-export const loginAddingToCart = (userId, addedProduct) =>{
+export const loginAddingToCart = (addedProduct) =>{
   return async (dispatch) =>{
     try{
-      console.log("Are we here?");
       // changing and fetching the cart
-      const {data} = await axios.post(`/api/users/${userId}/cart`, addedProduct)
-      console.log("Did we get data?", data)
+      const {data} = await axios.post(`/api/cart`, addedProduct, 
+      { headers: {
+        'Authorization': localStorage.getItem('token'),
+       
+      }
+    })
       // entire cart we pulled on 73-77 of user api route
       dispatch(addToCart(data));
     }catch(err){
@@ -106,10 +118,15 @@ export const loginAddingToCart = (userId, addedProduct) =>{
   }
 }
 
-export const _clear_loggedin_cart = (userId) => {
+export const _clear_loggedin_cart = () => {
   return async (dispatch) => {
     try {
-     await axios.delete(`/api/users/${userId}/cart`);
+     await axios.delete(`/api/cart`, 
+     { headers: {
+       'Authorization': localStorage.getItem('token'),
+      
+     }
+   });
       dispatch(clear_cart());
     } catch (err) {
       console.log(err);
@@ -144,33 +161,3 @@ export default function cartReducer(state = initState, action) {
       return state;
   }
 }
-
-// o: before done make sure to remove unused code
-// //INSIDE HOME COMPONENT
-// if (action.type === ADD_TO_CART) {
-
-//   let addedItem = action.id;
-//   //check if the action id exists in the addedItems
-//   let existed_item = state.addedItems.find(
-//     (product) => action.id === product.id
-//   );
-//   if (existed_item) {
-//     addedItem.quantity += 1;
-//     return {
-//       ...state,
-//       total: state.total + addedItem.price,
-//     };
-//   } else {
-//     addedItem.quantity = 1;
-//     //calculating the total
-//     let newTotal = state.total + addedItem.price;
-
-//     return {
-//       ...state,
-//       addedItems: [...state.addedItems, addedItem],
-//       total: newTotal,
-//     };
-//   }
-// } else {
-//   return state;
-// }

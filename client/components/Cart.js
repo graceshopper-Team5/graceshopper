@@ -26,14 +26,12 @@ export class Cart extends React.Component {
   componentDidMount() {
     // boolean different thunk if user is logged in
     // gets the products if the user is not logged in
-    console.log("this.props", this.props);
     let products = this.props.isLoggedIn
       ? this.props.getLoggedInCart(this.props.userId)
       : this.props.getCartProducts();
     this.setState({
       addedProducts: products,
     });
-    console.log("this.props inside component did mount", this.props);
     // getting cart from DB
   }
 
@@ -43,7 +41,7 @@ export class Cart extends React.Component {
 
   handleClearCartClick() {
     this.props.isLoggedIn
-      ? this.props._clear_loggedin_cart(this.props.userId)
+      ? this.props._clear_loggedin_cart()
       : this.props.clear_cart();
   }
   // changeClick(product, increase){
@@ -51,10 +49,9 @@ export class Cart extends React.Component {
   // }
 
   render() {
-    // add the checkout feacture
+    // add the checkout feature
     let addedItems = this.props.addedProducts.length ? (
-      (console.log("this.props.addedProducts", this.props.addedProducts),
-      console.log("this.props", this.props),
+      (
       this.props.addedProducts.map((product) => {
         return (
           <div className="collection-item avatar" key={product.id}>
@@ -91,7 +88,9 @@ export class Cart extends React.Component {
         );
       }))
     ) : (
+      <div className="Title">
       <p>Nothing.</p>
+      </div>
     );
 
     return (
@@ -114,14 +113,10 @@ export class Cart extends React.Component {
 }
 const mapStateToProps = (state) => {
   // taking state and products
-  console.log("state", state);
   return {
     isLoggedIn: !!state.auth.id,
     addedProducts: state.addedProducts,
     userId: state.auth.id
-    // products: !state.auth.id
-    //   ? this.props.getLoggedInCart()
-    //   : state.addedProducts,
   };
 };
 
@@ -132,7 +127,7 @@ const mapDispatchToProps = (dispatch) => {
     // get Cart products only relies on state
     getCartProducts: () => dispatch(getCartProducts()),
     deleteProduct: (product) => dispatch(deleteProduct(product)),
-    _clear_loggedin_cart: (id) => dispatch(_clear_loggedin_cart(id)),
+    _clear_loggedin_cart: () => dispatch(_clear_loggedin_cart()),
     // changeQuantity: (product, increase) => dispatch(changeQuantity(product, increase))
   };
 };

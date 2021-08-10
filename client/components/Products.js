@@ -23,8 +23,6 @@ export class Products extends React.Component {
     this.props.addingToCart;
   }
   logInHandleClick(userId, product) {
-    console.log("userId", userId);
-    console.log("product", product);
     this.props.loginAddingToCart(userId, product);
   }
 

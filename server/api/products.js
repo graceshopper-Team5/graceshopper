@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
   models: { Prop, Cart , Order},
 } = require("../db");
-const { /*requireToken,*/ isAdmin } = require('./gatekeepingMiddleware')
+const { requireToken, isAdmin } = require('./gatekeepingMiddleware')
 module.exports = router;
 
 // fetches  all products/ items
@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // Post route for adding items
-router.post('/', /*requireToken,*/ isAdmin, async (req, res, next) => {
+router.post('/', requireToken, async (req, res, next) => {
   try {
     res.status(201).send(await Prop.create(req.body));
   } catch (err) {
@@ -39,7 +39,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // editing an item
-router.put('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
+router.put('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const prop = await Prop.findByPk(req.params.id);
     const updatedProp = await prop.update(req.body);
@@ -51,7 +51,7 @@ router.put('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
 });
 
 // deleted an item
-router.delete('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
+router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const prop = await Prop.findByPk(req.params.id);
     await prop.destroy();
@@ -62,18 +62,14 @@ router.delete('/:id', /*requireToken,*/ isAdmin, async (req, res, next) => {
 })
 
 //THIS IS THE USER UPDATING THE CART
-router.put('/users/:id', async (req, res, next) => {
+router.put('/users/:id', requireToken, async (req, res, next) => {
   try {
     // const prop = await Prop.findByPk(req.params.id,
     //   {include: Order});
-    console.log("req.body.increase")
-    console.log(req.body.increase)
-    console.log("req.params.id", req.params.id)
     const cart = await Cart.findOne(
       {where:
         {propId: req.params.id}})
     
-    console.log("cart", cart)
     if(req.body.increase === "increase"){
       cart.quantity++
     }else{

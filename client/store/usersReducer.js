@@ -23,7 +23,13 @@ export const _createUser = (user) => {
 export const getUsers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('/api/users/')
+      const response = await axios.get('/api/users/', 
+        { headers: {
+          'Authorization': localStorage.getItem('token'),
+         
+        }
+      })
+      
       const data  = response.data
       dispatch(createUser(data))
     } catch (err) {
@@ -35,7 +41,12 @@ export const getUsers = () => {
 export const createUser = (user) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('/api/users/', user)
+      const response = await axios.post('/api/users/', user, 
+      { headers: {
+        'Authorization': localStorage.getItem('token'),
+       
+      }
+    })
       const data  = response.data
       dispatch(_createUser(data))
     } catch (err) {
