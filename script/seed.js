@@ -140,8 +140,7 @@ async function seed() {
       movieTitle: "JAWS",
       movieYear: 1975,
       price: 2000000,
-      imageUrl:
-        "https://lh3.googleusercontent.com/proxy/LsT1gJWbYSg17lp3iID12zyjKSRzhK9irddU1XEinUc5UuOy5mfWZXFGC1yZTbYUfHiR841QEj2b_3eEMyd70rY_rc2XUgZuFTFGbkodycyfhQQ6kMjMGw",
+      imageUrl: "https://i.ytimg.com/vi/JI9jNF-g_I8/mqdefault.jpg",
       description:
         "First ever model of the famous great white from Steven Spielberg's original collection.",
     }),
